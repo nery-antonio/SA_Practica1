@@ -20,6 +20,7 @@ pipeline {
             stage ('guardando artefacto') {
                 steps {
                     dir("build_node"){
+                    sh 'ls'
                      sh 'aws s3 sync ./index.html s3://sa-practica1-junio21'
                     }
                 }
