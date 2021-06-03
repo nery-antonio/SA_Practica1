@@ -4,24 +4,18 @@ pipeline {
         stages {
             stage ('install') {
                 steps {
-                    dir("build_node"){
                       sh "npm install"
-                    } 
                 }
             }
             stage ('test') {
                 steps {
-                  dir("build_node"){
                         sh "npm test"
-                  }
                 }
             }
 
             stage ('guardando artefacto') {
                 steps {
-                    dir("build_node"){
                      sh 'aws s3 sync ./index.html s3://sa-practica1-junio21'
-                    }
                 }
             }
 
