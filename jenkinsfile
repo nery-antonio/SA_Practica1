@@ -5,7 +5,7 @@ pipeline {
             stage ('install') {
                 steps {
                     dir("build_node"){
-                    sh "npm i -g npm@latest"
+                      sudo sh "npm i -g npm@latest"
                       sh "npm install"
                     } 
                 }
