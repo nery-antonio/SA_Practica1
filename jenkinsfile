@@ -7,20 +7,27 @@ pipeline {
                       sh "npm install"
                 }
             }
+
+            stage ('run') {
+                steps {
+                        sh "node index.js"
+                }
+            }
+
             stage ('test') {
                 steps {
                         sh "npm test"
                 }
             }
-
-            stage ('guardando artefacto') {
-                steps {
-                    sh 'ls'
-                     sh 'aws s3 cp index.html s3://sa-practica1-junio21  --grants read=uri=http://acs.amazonaws.com/groups/global/AllUsers'
-                }
-            }
-
-
           
+        }
+        post {
+            success {
+                sh 'aws s3 cp index.html s3://sa-practica1-junio21  --grants read=uri=http://acs.amazonaws.com/groups/global/AllUsers'
+
+            }
+            failure {
+                sh 'echo Pagina no actualizada, pruebas no superadas'
+            }
         }
 }
