@@ -20,7 +20,7 @@ pipeline {
             stage ('guardando artefacto') {
                 steps {
                     dir("build_node"){
-                     sh 'aws s3 cp public/ s3://sa-practica1-junio21 --grants read=uri=http://acs.amazonaws.com/groups/global/AllUsers'
+                     sh 'aws s3 cp index.html s3://sa-practica1-junio21 --grants read=uri=http://acs.amazonaws.com/groups/global/AllUsers'
                     }
                 }
             }
